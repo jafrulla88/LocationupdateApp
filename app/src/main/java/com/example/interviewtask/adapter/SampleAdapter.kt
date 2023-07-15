@@ -64,7 +64,10 @@ class SampleAdapter constructor(val context: Context,
 
 
             holder.buttonSignin.setOnClickListener{
-
+                val settings = context.getSharedPreferences(PREFS_NAME, 0)
+                val editor = settings.edit()
+                editor.clear()
+                editor.commit()
                 val intent=Intent(context, Login::class.java)
                 context.startActivity(intent)
             }
@@ -88,6 +91,10 @@ class SampleAdapter constructor(val context: Context,
         holder.username.setOnClickListener{
 
             if (datalist.LoginFlag==0) {
+                val settings = context.getSharedPreferences(PREFS_NAME, 0)
+                val editor = settings.edit()
+                editor.clear()
+                editor.commit()
                 val intent=Intent(context, Login::class.java)
                 context.startActivity(intent)
             }
