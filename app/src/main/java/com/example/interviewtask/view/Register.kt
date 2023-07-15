@@ -18,7 +18,8 @@ class Register : AppCompatActivity() {
     var editEmail: EditText? =null
     var editMobile:EditText?=null
     var buttonReg:Button?=null
-     var viewModel = UserViewModel()
+    var viewModel = UserViewModel()
+    private val PREFS_NAME = "LoginPrefs"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,10 @@ class Register : AppCompatActivity() {
                   editPassword!!.text.clear()
                   editEmail!!.text.clear()
                   editMobile!!.text.clear()
-
+                  val settings = getSharedPreferences(PREFS_NAME, 0)
+                  val editor = settings.edit()
+                  editor.clear()
+                  editor.commit()
                   Toast.makeText(applicationContext,"Regsitered Successfully",Toast.LENGTH_SHORT).show()
                   intent= Intent(this, Login::class.java)
                   startActivity(intent)
@@ -63,4 +67,5 @@ class Register : AppCompatActivity() {
           }
 
     }
+
 }
